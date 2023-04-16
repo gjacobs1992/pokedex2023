@@ -9,5 +9,8 @@ export default {
     },
     getPokemon(name){
         return http.get(`/pokemon/${name}`);
+    },
+    getAllTypes(){
+        return http.get(`/type/`);
     }
 }

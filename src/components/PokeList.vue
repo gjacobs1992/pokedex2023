@@ -11,10 +11,12 @@
 <script>
 import PokeService from '../services/PokeService'
 import PokeCard from './PokeCard.vue'
+import Mixins from '../mixins/mixins'
 export default {
   components: {
     PokeCard
   },
+  mixins: [Mixins],
   data() {
     return {
       pokemonList: []
@@ -33,9 +35,9 @@ export default {
 </script>
 
 <style scoped>
-.card-list{
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
+.card-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
 }
 </style>

@@ -1,6 +1,6 @@
 <template>
   <div class="pokemon-card">
-    <h2>{{ pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1) }}</h2>
+    <h2>{{ capitalizeFirstChar(pokemon.name) }}</h2>
     <p>Type: {{ formattedTypes }}</p>
     <img :src="spriteUrl" />
     <!-- Other card details -->
@@ -9,6 +9,7 @@
 
 <script>
 import PokeService from '../services/PokeService'
+import Mixins from '../mixins/mixins'
 export default {
   data() {
     return {
@@ -21,6 +22,7 @@ export default {
       required: true
     }
   },
+  mixins: [Mixins,],
   mounted() {
     this.getPokemonInfo(this.pokemon.name)
   },
@@ -32,14 +34,6 @@ export default {
     }
   },
   computed: {
-    formattedTypes() {
-      if (this.pokemonInfo.types) {
-        return this.pokemonInfo.types
-          .map((type) => type.type.name.charAt(0).toUpperCase() + type.type.name.slice(1))
-          .join(', ')
-      }
-      return ''
-    },
     spriteUrl() {
       if (this.pokemonInfo.sprites) {
         return this.pokemonInfo.sprites.front_default
